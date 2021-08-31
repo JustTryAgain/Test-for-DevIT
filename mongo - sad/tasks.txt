@@ -1,0 +1,6 @@
+task 1:db.post.find().skip(5).sort({"properties.author":1}).limit(10).pretty()
+task 1:db.post.find({"properties.dislike": {$lt : 100}}).pretty()
+task 3:я делал такой командой:, с 100 лайков увеличил до 101 +1профит
+db.post.update( { "properties.author": "a1" }, {  $inc: { "properties.like": 1 } } )
+task 4: ужас...
+db.post.aggregate([{ $group : { _id : "$properties.title", dislikes : { $sum : "$properties.dislikes" } } }]).pretty()

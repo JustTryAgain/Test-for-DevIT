@@ -1,0 +1,51 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.banner{
+  height: 40vh;
+  width: 80%;
+  background-image: url(banner.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:100%;
+  position: relative;
+}
+.text {
+  text-align: center;
+  color:#6666ff;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+  padding: 5px;
+  margin: 10px;
+}
+
+/*присваивать классы в 1 див с классом banner*/
+.text-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-bottom-left{
+  display:flex;
+  align-items:flex-end;
+}
+.text-bottom-right{
+  display:flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+}
+/*присваивать классы в 2 див с классом text*/
+.text-top-right{
+  position:absolute;
+  right: 0px;
+}
+.text-top-left{
+  position:absolute;
+}

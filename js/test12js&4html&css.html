@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .form__group{
+            max-width: 300px;
+            margin-bottom: 10px;
+        }
+        .error{
+            height: 30px;
+            color: #fd0808;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+        <form action="" method="" class="form">
+
+            <div class="form__group">
+                <label for="email">Email:</label><br>
+                <input type="email" class="input" placeholder="Email" name="email" id="email">
+                <div class="error"></div>            
+            </div>
+
+            <div class="form__group">
+                <label for="avatar">Your avatar </label><br>
+                <input type="file" class="input file" placeholder="Your password" name="avatar" id="avatar" accept=".png">
+                <div class="error"></div>    
+            </div>
+
+            <div class="form__group">
+                <label for="firstPass">First password: </label><br>
+                <input type="password" class="input" placeholder="Your password" name="pass" id="firstPass">
+                <div class="error"></div>    
+            </div>
+
+            <div class="form__group">
+                <label for="secondPass">Second password:</label><br>
+                <input type="password" class="input" placeholder="Confirm password" name="passConf" id="secondPass">
+                <div class="error"></div>  
+            </div>
+
+
+            <button type="submit" class="reg-btn">Registartion</button>
+        </form>
+        qweQWE123# <!--пароль для проверки что бы не писать -->
+    </section>
+    <script>
+        const regForm = document.querySelector('.form')
+        const regBtn = document.querySelector('.reg-btn')
+        const pass = document.getElementsByName('pass')
+        const passConf = document.getElementsByName('passConf')
+        const avatar = document.getElementsByName('avatar')
+
+        let formToggle = false
+
+
+
+        const inputs = regForm.querySelectorAll('.input')
+        const errors = regForm.querySelectorAll('.error')
+
+
+        const validFile = (inputFile) => {
+            let imgName = ''
+            
+            if ( inputFile.name === 'avatar' && inputFile.files.length > 0) {
+                    console.log(inputFile);
+                    imgName = inputFile.files[0].name
+                    if(imgName.split('.').includes('png')){
+                        return true
+                    }else{
+                        return false
+                    }
+                }
+        }
+
+        const validInput = (input) => {
+            const errorsObj = {
+                'email' : (/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i).test(input.value) ? '' : "Некорректный email",
+                'pass' : (/^(?=.*[A-Z])(?=.*[!@#$&_*])(?=.*[0-9])(?=.*[a-z]).{8,}$/).test(input.value) ? '' :  input.value.length < 8 ? "Пароль не меньше 8 символов" : "Цифри, буквы разных регистров, 1 спец-символ",
+                'passConf' : pass[0].value === passConf[0].value ? '' : "Пароли не совпадают",
+                'avatar' : validFile(input) ? '' : "Только файлы с расширением .png размер не больше 1Mb",
+            }
+            
+            return errorsObj[input.name]
+        }
+
+       
+        //====
+        for (let input of inputs){
+            input.addEventListener('blur', () =>{
+                
+                if (avatar[0].files.length > 0 ) {
+                    imgName = avatar[0].files[0].name
+                    if(!(imgName.split('.').includes('png'))){
+                        formToggle = true
+                    }else{
+                        formToggle = false
+                    }
+                }
+
+                if( pass[0].value === passConf[0].value){
+                    errors[[...inputs].indexOf(input)].textContent = ''
+                    formToggle = false
+                }
+                else if(!(input.value === '') || input.name === 'avatar'){
+                    errors[[...inputs].indexOf(input)].textContent = validInput(input)
+
+                    
+                }else{
+                    formToggle = false
+                }
+                regBtn.disabled = formToggle
+                
+            })
+        }
+
+        //=====
+        regForm.addEventListener('submit', (el) =>{
+            el.preventDefault()
+            
+            for (let input of inputs){
+                if(!(input.value === '') || input.name === 'avatar'){
+                    errors[[...inputs].indexOf(input)].textContent = validInput(input)
+                }
+                if(input.value === ''){
+                    errors[[...inputs].indexOf(input)].textContent = "Данное поле не заполнено"
+                    formToggle = true
+                }
+
+            }
+
+            regBtn.disabled = formToggle
+        })
+
+    </script>
+</body>
+</html>

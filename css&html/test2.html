@@ -1,0 +1,39 @@
+<!--сразу гуглю animation rotate css -_--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test 2</title>
+  <style>
+    *{
+      padding: 0px;
+      margin: 0px;
+      box-sizing: border-box;
+    }
+    body{
+      width: 100%;
+      height: 100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    @keyframes rotating{
+      0%{-webkit-transform: rotate(0deg);}
+      50%{background-color: orange;}
+      100%{-webkit-transform: rotate(360deg);background-color: green;}
+    }
+    .square{
+      height: 50px;
+      width: 50px;
+      background-color: red;
+      -webkit-animation: rotating 3s linear 1s infinite;
+    }
+    /* animation: animation-duration || animation-timing-function || 
+  animation-delay || animation-iteration-count || animation-direction || 
+  animation-fill-mode || animation-play-state || [none | animation-name] */
+  </style>
+</head>
+<body>
+  <div class="square"></div>
+</body>
+</html>

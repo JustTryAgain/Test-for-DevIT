@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="sampleTable"  class="sample-table" border="1"> 
+        <tr class="row">
+          <td>Row1 cell1</td> 
+          <td>Row1 cell2</td>
+          <td>Row1 cell3</td>
+        </tr> 
+        <tr class="row">
+          <td>Row2 cell1</td> 
+          <td>Row2 cell2</td>
+          <td>Row2 cell3</td>
+        </tr> 
+    </table><br> 
+        <button id="btnInsert" class="btn-insert" type="button" value="Insert row">btnInsert</button> 
+        <button id="btnRemove" class="btn-remove" type="button" value="Remove row">btnRemove</button> 
+
+    <script>
+
+        const btnInsert = document.querySelector('.btn-insert')
+        const btnRemove = document.querySelector('.btn-remove')
+
+        function insertRow(){
+            
+            let x = document.getElementById('sampleTable').insertRow();
+            let y = x.insertCell(0);
+            let z = x.insertCell(1);
+            let d = x.insertCell(2);
+            y.innerHTML="New Cell1";
+            z.innerHTML="New Cell2";
+            d.innerHTML="New Cell3";
+        }
+
+        function deleteRow(){
+            
+            let x = document.querySelector('.sample-table tr')
+            
+            x.remove();
+            
+        }
+
+        btnInsert.addEventListener('click', insertRow)
+        btnRemove.addEventListener('click', deleteRow)
+
+    </script>
+</body>
+</html>

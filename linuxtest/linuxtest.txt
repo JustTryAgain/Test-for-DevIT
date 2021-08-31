@@ -1,0 +1,28 @@
+1. cd /var/www/html/ потом
+ ls -d
+  
+-d -только директории
+2.так, чтобы проще, то несколько команд:
+
+сначала выбираем все строки с символами (не пустые) с нашего файла
+во временный:
+grep "\ S" error.txt> temp.txt
+
+затем заменяем наш файл на полученный временный:
+mv -f temp.txt error.txt
+
+здесь -f - чтобы не спрашивали нас подтверждение, перезаписать существующий файл.
+3. ls*.jpg/var/www/html/images
+4.примерно так:
+
+ взял из https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files#19656
+#! / Bin / bash
+cd /var/www/html/logs 
+for f in * .txt; do
+    mv - "$ f" "$ {f% .txt} .log"
+done
+5.для смены собственника и группы: chown для изменения прав chown.
+ Цифровое представление прав: для папки - 700, для файлов внутри папки - 600
+6.echo> /var/www/html/logs/access.txt 
+то есть, записываем ничего в файл
+7.find /var/www/html/images -name '*' -size + 2M
